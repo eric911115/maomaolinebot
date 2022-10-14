@@ -21,6 +21,7 @@ app = Flask(__name__)
 
 line_bot_api = LineBotApi('zegN/VBfBTlX9qAQoGJWWMazAUWyEN/DI+kPR+lqIaoWTamaIZq59REhdduCL1n+tQsjHPrWXpMckk+gOGON/coXA9Bx47cVJoDxBbeA3fLlxA3TwdYW/u9yPM3IWm0NoMoE1I4hfXDC+OR0viORlwdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('f7daa972ca14bb6c060aec3245beb7e9')
+line_bot_api.push_message('Uadeefb1e5194071cb79756915b8b5309', TextSendMessage(text='你可以開始了'))
 
 @app.route("/", methods=['GET'])
 def hello():
@@ -68,4 +69,5 @@ def movie():
 
 import os
 if __name__ == "__main__":
-    app.run(host='0.0.0.0',port=os.environ['PORT'])
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
