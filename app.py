@@ -46,7 +46,7 @@ def movie():
     for index, data in enumerate(soup.select('div.release_movie_name a')):
         if index == 20:
             return content       
-        title = data.text.strip
+        title = data.text
         content += '{}'.format(title)
     return content
 
@@ -54,7 +54,7 @@ def movie():
 def handle_message(event):
     if event.message.text =="最新電影":
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
-        content = movie()
+        content = movie().strip()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
