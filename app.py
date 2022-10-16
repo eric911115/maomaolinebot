@@ -31,7 +31,19 @@ def callback():
         abort(400)
 
     return 'OK'
-
+def movie():
+    target_url = 'https://movies.yahoo.com.tw/movie_intheaters.html'
+    rs = requests.session()
+    res = rs.get(target_url, verify=False)
+    res.encoding = 'utf-8'
+    soup = BeautifulSoup(res.text, 'html.parser')   
+    content = ""
+    for index, data in enumerate(soup.select('div.release_movie_name a')):
+        if index == 20:
+            return content       
+        title = data.text
+        content += '{}\n'.format(title)
+    return content
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -42,7 +54,7 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=content))
     else:
-        content = "{}".format(event.source.user_id, event.message.text)
+        content = "{}".format(event.message.text)
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
