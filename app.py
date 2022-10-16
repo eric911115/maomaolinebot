@@ -35,12 +35,18 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    if event.message.text =="最新電影"
+    
     #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
-    content = "{}".format( event.message.text)
+    content = movie()
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=content))
-
+    else
+    content = "{}".format(event.source.user_id, event.message.text)
+    line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text=content))
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 80))
