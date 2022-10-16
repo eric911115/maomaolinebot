@@ -10,6 +10,11 @@ from linebot.models import (
     MessageEvent, TextMessage, TextSendMessage,
 )
 
+from importlib.resources import contents
+import requests 
+from bs4 import BeautifulSoup
+from urllib.request import urlretrieve 
+
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('zegN/VBfBTlX9qAQoGJWWMazAUWyEN/DI+kPR+lqIaoWTamaIZq59REhdduCL1n+tQsjHPrWXpMckk+gOGON/coXA9Bx47cVJoDxBbeA3fLlxA3TwdYW/u9yPM3IWm0NoMoE1I4hfXDC+OR0viORlwdB04t89/1O/w1cDnyilFU=')
