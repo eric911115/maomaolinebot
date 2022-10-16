@@ -47,14 +47,14 @@ def movie():
         if index == 20:
             return content       
         title = data.text
-        content += '{}'.format(title)
+        content += '{}'.format(title).strip(
     return content
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text =="最新電影":
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
-        content = movie().strip()
+        content = movie()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
