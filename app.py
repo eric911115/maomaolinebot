@@ -46,7 +46,7 @@ def movie():
     for index, data in enumerate(soup.select('div.release_movie_name a')):
         if index == 20:
             return content       
-        title = data.text
+        title = data.text.strip
         content += '{}'.format(title)
     return content
 
