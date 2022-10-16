@@ -47,7 +47,7 @@ def movie():
         if index == 20:
             return content       
         title = data.text
-        content += '{}+\n'.format(title).strip()
+        content += '{}\n'.format(title).lstrip()
     return content
 
 @handler.add(MessageEvent, message=TextMessage)
