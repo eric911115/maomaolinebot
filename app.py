@@ -71,7 +71,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
-    else if event.message.text =="芒果醬":
+    elif event.message.text =="芒果醬":
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
         content = mango()
         line_bot_api.reply_message(
