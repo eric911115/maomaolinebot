@@ -50,11 +50,30 @@ def movie():
         content += '{}\n'.format(title).lstrip()
     return content
 
+def mango():
+    target_url = 'https://www.fight30.com/products/mango-jump-towel'
+    rs = requests.session()
+    res = rs.get(target_url, verify=False)
+    res.encoding = 'utf-8'
+    soup = BeautifulSoup(res.text, 'html.parser')   
+    content = ""
+    for index, data in enumerate(soup.select('div.out-of-stock txt-sold-out')):
+        if index == 20:
+            return content       
+        title = data.text
+        content += '{}\n'.format(title).lstrip()
+    return content
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     if event.message.text =="最新電影":
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
         content = movie()
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=content))
+    else if event.message.text =="芒果醬":
+        #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
+        content = mango()
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
