@@ -59,10 +59,10 @@ def mango():
     res = rs.get(target_url, verify=False)
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text, 'html.parser')   
-    content2 = ""
+    content = ""
     for index, data in enumerate(soup.select('div.out-of-stock txt-sold-out')):
         if index == 20:
-            return content2      
+            return content      
         title = data.text
         content += '{}\n'.format(title).lstrip()
     return content
