@@ -53,8 +53,7 @@ def movie():
     return content
 
 def mango():
-    target_url = 'https://www.fight30.com/products/mango-jump-towel.html
-    '
+    target_url = 'https://www.fight30.com/products/mango-jump-towel.html'
     rs = requests.session()
     res = rs.get(target_url, verify=False)
     res.encoding = 'utf-8'
