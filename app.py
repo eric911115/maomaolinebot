@@ -64,7 +64,7 @@ def mango():
         if index == 20:
             return content2      
         title = data.text
-        content += '{}\n'.format(title2).lstrip()
+        content += '{}\n'.format(title).lstrip()
     return content
 
 @handler.add(MessageEvent, message=TextMessage)
