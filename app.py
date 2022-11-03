@@ -53,18 +53,19 @@ def movie():
     return content
 
 def mango():
-    target_url2 = 'https://www.fight30.com/products/mango-jump-towel'
-    rs2 = requests.session()
-    res2 = rs2.get(target_url2, verify=False)
-    res2.encoding = 'utf-8'
-    soup2 = BeautifulSoup(res2.text, 'html.parser')   
+    target_url = 'https://www.fight30.com/products/mango-jump-towel.html
+    '
+    rs = requests.session()
+    res = rs.get(target_url, verify=False)
+    res.encoding = 'utf-8'
+    soup = BeautifulSoup(res.text, 'html.parser')   
     content2 = ""
-    for index2, data2 in enumerate(soup2.select('div.out-of-stock txt-sold-out')):
-        if index2 == 20:
-            return content2       
-        title2 = data.text
-        content2 += '{}\n'.format(title2).lstrip()
-    return content2
+    for index, data in enumerate(soup.select('div.out-of-stock txt-sold-out')):
+        if index == 20:
+            return content2      
+        title = data.text
+        content += '{}\n'.format(title2).lstrip()
+    return content
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
