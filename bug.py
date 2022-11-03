@@ -2,18 +2,19 @@ from importlib.resources import contents
 import requests 
 from bs4 import BeautifulSoup
 from urllib.request import urlretrieve 
+import requests.packages.urllib3
+requests.packages.urllib3.disable_warnings()
 
 
-
-    target_url = 'https://movies.yahoo.com.tw/movie_intheaters.html'
-    rs = requests.session()
-    res = rs.get(target_url, verify=False)
-    res.encoding = 'utf-8'
-    soup = BeautifulSoup(res.text, 'html.parser')   
-    content = ""
-    for index, data in enumerate(soup.select('div.release_movie_name a')):
-        if index == 20:
-            return content       
+    
+target_url = 'https://www.fight30.com/products/mango-jump-towel'
+rs = requests.session()
+res = rs.get(target_url, verify=False)
+res.encoding = 'utf-8'
+soup = BeautifulSoup(res.text, 'html.parser')   
+content = ""
+for index, data in enumerate(soup.select('div.out-of-stock txt-sold-out')):
+    if index == 20:      
         title = data.text
-        content += '{}\n'.format(title)
-        print(content)
+        content += '{}\n'.format(title).lstrip()
+    print(content)

@@ -14,6 +14,8 @@ from importlib.resources import contents
 import requests 
 from bs4 import BeautifulSoup
 from urllib.request import urlretrieve 
+import requests.packages.urllib3
+requests.packages.urllib3.disable_warnings()
 
 app = Flask(__name__)
 
