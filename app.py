@@ -17,7 +17,7 @@ from urllib.request import urlretrieve
 import requests.packages.urllib3
 import urllib.request as req
 requests.packages.urllib3.disable_warnings()
-import threading
+
 gg=0
 app = Flask(__name__)
 
@@ -67,7 +67,7 @@ def mango():
     titles=root.find("div",class_="out-of-stock txt-sold-out")
     if titles.text == "售完":
         return False
-        
+
 if(mango)==False:  
     line_bot_api.push_message('Uadeefb1e5194071cb79756915b8b5309', TextSendMessage(text='Hello World!'))
 
@@ -85,7 +85,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
-    elif event.message.text == "":
+    elif event.message.text == "芒果醬":
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
         if mango()==False:
             content = "https://www.fight30.com/products/mango-jump-towel"
