@@ -68,8 +68,10 @@ def mango():
  
     root=BeautifulSoup(data,"html.parser")
     titles=root.find("div",class_="out-of-stock txt-sold-out")
-    return titles.text
+    if titles.text == "售完":
+        return True
 
+setInterval(mango, 50)
 
 
 @handler.add(MessageEvent, message=TextMessage)
@@ -80,9 +82,9 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
-    elif event.message.text =="芒果醬":
+    elif mango() == True:
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
-        content = mango()
+        content = "https://www.fight30.com/products/mango-jump-towel"
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
