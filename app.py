@@ -59,7 +59,7 @@ def mango():
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text, 'html.parser')   
     content = ""
-    for index, data in enumerate(soup.find('class='ticket-quantity ng-binding ng-scope')):
+    for index, data in enumerate(soup.find(class='ticket-quantity ng-binding ng-scope')):
         if index == 20:
             return content      
         title = data.text
