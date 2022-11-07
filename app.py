@@ -66,11 +66,9 @@ def mango():
     res.encoding = 'utf-8'
     soup = BeautifulSoup(res.text, 'html.parser')   
     content = ""
-    for index, data in enumerate(soup.find("div",class_="out-of-stock txt-sold-out")):
-        if index == 1:
-            return content       
-        title = data.text
-        content += '{}\n'.format(title).lstrip()
+    data =soup.find("div",class_="out-of-stock txt-sold-out")     
+    title = data.text
+    content += '{}\n'.format(title).lstrip()
     return content
 
 
