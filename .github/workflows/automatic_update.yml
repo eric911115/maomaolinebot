@@ -1,0 +1,19 @@
+name: Build and Deploy to Google Cloud Storage
+ 
+on:
+  push:
+    branches:
+    - main
+jobs:
+  job:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Check out repository
+        run: ls -lah $GITHUB_WORKSPACE
+      - name: Upload google-cloud-storage
+        uses: GoogleCloudPlatform/github-actions/upload-cloud-storage@master
+        with:
+          path: ${{ github.workspace }}
+          destination: pycon2021
+          credentials: ${{ secrets.GCP_CREDENTIALS }}
