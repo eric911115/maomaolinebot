@@ -71,7 +71,6 @@ def mango():
     if titles.text == "售完":
         return True
 
-setInterval(mango, 50)
 
 
 @handler.add(MessageEvent, message=TextMessage)
