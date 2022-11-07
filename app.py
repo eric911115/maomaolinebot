@@ -17,7 +17,7 @@ from urllib.request import urlretrieve
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
 import time
-gg=''
+gg=0
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('zegN/VBfBTlX9qAQoGJWWMazAUWyEN/DI+kPR+lqIaoWTamaIZq59REhdduCL1n+tQsjHPrWXpMckk+gOGON/coXA9Bx47cVJoDxBbeA3fLlxA3TwdYW/u9yPM3IWm0NoMoE1I4hfXDC+OR0viORlwdB04t89/1O/w1cDnyilFU=')
@@ -60,14 +60,14 @@ def movie():
     return content
 
 def mango():
-    gg = "最新電影"
+    gg = 1
     return gg
-setInterval(mango, 10)
+setInterval(mango, 100)
 
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if gg =="最新電影":
+    if gg == 1:
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
         content = movie()
         line_bot_api.reply_message(
