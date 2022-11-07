@@ -59,7 +59,7 @@ def movie():
         content += '{}\n'.format(title).lstrip()
     return content
 
-def mango()
+def mango():
     event.message.text = "最新電影"
 setInterval(mango, 10)
 
