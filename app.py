@@ -3,8 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 import urllib.request as req
 import time
-import threading
 import random
+import os
 i=0
 # def set_interval(func, sec):
 #     def func_wrapper():
@@ -63,4 +63,7 @@ while(i<10):
     VH()
     i=3
     print(i)
-  
+
+if __name__ == "__main__":
+    port = int(os.environ.get('PORT', 80))
+    app.run(host='0.0.0.0', port=port)
