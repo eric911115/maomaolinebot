@@ -60,16 +60,14 @@ def movie():
     return content
 
 def mango():
-    target_url = 'https://movies.yahoo.com.tw/movie_intheaters.html'
-    rs = requests.session()
-    res = rs.get(target_url, verify=False)
-    res.encoding = 'utf-8'
-    soup = BeautifulSoup(res.text, 'html.parser')   
-    content = ""
-    data =soup.find("div",class_="out-of-stock txt-sold-out")     
-    title = data.text
-    content += '{}\n'.format(title).lstrip()
-    return content
+    url="https://www.fight30.com/products/mango-jump-towel"
+
+    with req.urlopen(url)as response:
+    data=response.read().decode("utf-8")
+ 
+    root=BeautifulSoup(data,"html.parser")
+    titles=root.find("div",class_="out-of-stock txt-sold-out")
+    return titles.text
 
 
 

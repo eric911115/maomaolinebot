@@ -4,11 +4,14 @@ from bs4 import BeautifulSoup
 import urllib.request as req
 import json
 
-url="https://www.fight30.com/products/mango-jump-towel"
 
-with req.urlopen(url)as response:
-    data=response.read().decode("utf-8")
- 
-root=BeautifulSoup(data,"html.parser")
-titles=root.find("div",class_="out-of-stock txt-sold-out")
-print(titles.text)
+
+target_url = 'https://movies.yahoo.com.tw/movie_intheaters.html'
+rs = requests.session()
+res = rs.get(target_url, verify=False)
+res.encoding = 'utf-8'
+print(res)
+soup = BeautifulSoup(res.text, 'html.parser')   
+content = ""
+data =soup.find("div",class_="out-of-stock txt-sold-out")     
+
