@@ -67,7 +67,9 @@ def mango():
     titles=root.find("div",class_="out-of-stock txt-sold-out")
     if titles.text == "售完":
         return False
-    
+        
+if(mango)==False:  
+    line_bot_api.push_message('Uadeefb1e5194071cb79756915b8b5309', TextSendMessage(text='Hello World!'))
 
 
 @handler.add(MessageEvent, message=TextMessage)
