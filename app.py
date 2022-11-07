@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 from urllib.request import urlretrieve 
 import requests.packages.urllib3
 requests.packages.urllib3.disable_warnings()
+import time
 
 app = Flask(__name__)
 
@@ -38,6 +39,12 @@ def callback():
         abort(400)
 
     return 'OK'
+
+def setInterval(func, sec):
+    time.sleep(sec)
+    func()
+    setInterval(func(), sec)
+
 def movie():
     target_url = 'https://movies.yahoo.com.tw/movie_intheaters.html'
     rs = requests.session()
@@ -52,13 +59,10 @@ def movie():
         content += '{}\n'.format(title).lstrip()
     return content
 
-def mango():
-    target_url = 'https://www.fight30.com/products/mango-jump-towel'
-    with req.urlopen(url)as response:
-    data=response.read().decode("utf-8")
-    root=BeautifulSoup(data,"html.parser")
-    content=root.find("div",class_="out-of-stock txt-sold-out")
-    return content
+def mango()
+    event.message.text = "最新電影"
+setInterval(mango, 10)
+
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
