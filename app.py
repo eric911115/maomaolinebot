@@ -18,7 +18,7 @@ import requests.packages.urllib3
 import urllib.request as req
 requests.packages.urllib3.disable_warnings()
 
-gg=0
+
 app = Flask(__name__)
 
 line_bot_api = LineBotApi('zegN/VBfBTlX9qAQoGJWWMazAUWyEN/DI+kPR+lqIaoWTamaIZq59REhdduCL1n+tQsjHPrWXpMckk+gOGON/coXA9Bx47cVJoDxBbeA3fLlxA3TwdYW/u9yPM3IWm0NoMoE1I4hfXDC+OR0viORlwdB04t89/1O/w1cDnyilFU=')
@@ -72,10 +72,6 @@ def mango():
 
 
 @handler.add(MessageEvent, message=TextMessage)
-
-def DD():
-    if(mango)==False:  
-        line_bot_api.push_message('Uadeefb1e5194071cb79756915b8b5309', TextSendMessage(text='Hello World!'))
         
 def handle_message(event):
     if gg == 1:
