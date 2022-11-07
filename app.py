@@ -59,14 +59,14 @@ def movie():
         content += '{}\n'.format(title).lstrip()
     return content
 
-def mango():
-    movie1 = "最新電影"
+def mango(event):
+    event.message.text = "最新電影"
 setInterval(mango, 10)
 
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    if movie1 =="最新電影":
+    if event.message.text =="最新電影":
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
         content = movie()
         line_bot_api.reply_message(
