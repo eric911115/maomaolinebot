@@ -17,4 +17,4 @@ for index, data in enumerate(soup.select('div.out-of-stock txt-sold-out')):
     if index == 20:      
         title = data.text
         content += '{}\n'.format(title).lstrip()
-    print(content)
+    print(soup.title)
