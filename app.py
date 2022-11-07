@@ -15,6 +15,7 @@ import requests
 from bs4 import BeautifulSoup
 from urllib.request import urlretrieve 
 import requests.packages.urllib3
+import urllib.request as req
 requests.packages.urllib3.disable_warnings()
 import time
 gg=0
@@ -63,7 +64,7 @@ def mango():
     url="https://www.fight30.com/products/mango-jump-towel"
 
     with req.urlopen(url)as response:
-    data=response.read().decode("utf-8")
+        data=response.read().decode("utf-8")
  
     root=BeautifulSoup(data,"html.parser")
     titles=root.find("div",class_="out-of-stock txt-sold-out")
