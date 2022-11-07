@@ -71,13 +71,7 @@ def mango():
 
 
 @handler.add(MessageEvent, message=TextMessage)
-def set_interval(func, sec):
-    def func_wrapper():
-        set_interval(func, sec)
-        func()
-    t = threading.Timer(sec, func_wrapper)
-    t.start()
-    return t
+
 def DD():
     if(mango)==False:  
         line_bot_api.push_message('Uadeefb1e5194071cb79756915b8b5309', TextSendMessage(text='Hello World!'))
@@ -89,10 +83,11 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
-    elif mango() == True:
+    elif event.message.text == "":
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
-        content = "https://www.fight30.com/products/mango-jump-towel"
-        line_bot_api.reply_message(
+        if mango()==False:
+            content = "https://www.fight30.com/products/mango-jump-towel"
+            line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
     else:
@@ -100,7 +95,7 @@ def handle_message(event):
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=content))
-set_interval(DD, 3)
+
 import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 80))
