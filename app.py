@@ -93,8 +93,8 @@ def handle_message(event):
             event.reply_token,
             TextSendMessage(text=content))
 try:
-    if mango()==False:
-        line_bot_api.push_message('Uadeefb1e5194071cb79756915b8b5309', TextSendMessage(text='台科大電腦研習社'))
+    if mango()!=False:
+        line_bot_api.push_message('Uadeefb1e5194071cb79756915b8b5309', TextSendMessage(text='https://www.fight30.com/products/mango-jump-towel'))
 
 except InvalidSignatureError:
     print("沒有毛巾喔")
