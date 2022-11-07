@@ -74,7 +74,7 @@ def mango():
 @handler.add(MessageEvent, message=TextMessage)
         
 def handle_message(event):
-    if gg == 1:
+    if event.message.text == "最新電影":
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
         content = movie()
         line_bot_api.reply_message(
