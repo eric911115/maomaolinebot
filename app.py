@@ -41,10 +41,7 @@ def callback():
 
     return 'OK'
 
-def setInterval(func, sec):
-    time.sleep(sec)
-    func()
-    setInterval(func(), sec)
+
 
 def movie():
     target_url = 'https://movies.yahoo.com.tw/movie_intheaters.html'
@@ -69,11 +66,15 @@ def mango():
     root=BeautifulSoup(data,"html.parser")
     titles=root.find("div",class_="out-of-stock txt-sold-out")
     if titles.text == "售完":
-        return True
-
+        return False
+    
 
 
 @handler.add(MessageEvent, message=TextMessage)
+def DD():
+    if(mango)==False:  
+        line_bot_api.push_message('Uadeefb1e5194071cb79756915b8b5309', TextSendMessage(text='Hello World!'))
+        
 def handle_message(event):
     if gg == 1:
         #print("Handle: reply_token: " + event.reply_token + ", message: " + event.message.text)
