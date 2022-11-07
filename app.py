@@ -53,17 +53,11 @@ def movie():
     return content
 
 def mango():
-    target_url = 'https://kktix.com/events/fe4fsw-08/registrations/new#'
-    rs = requests.session()
-    res = rs.get(target_url, verify=False)
-    res.encoding = 'utf-8'
-    soup = BeautifulSoup(res.text, 'html.parser')   
-    content = ""
-    for index, data in enumerate(soup.find(class='ticket-quantity ng-binding ng-scope')):
-        if index == 20:
-            return content      
-        title = data.text
-        content += '{}\n'.format(title).lstrip()
+    target_url = 'https://www.fight30.com/products/mango-jump-towel'
+    with req.urlopen(url)as response:
+    data=response.read().decode("utf-8")
+    root=BeautifulSoup(data,"html.parser")
+    content=root.find("div",class_="out-of-stock txt-sold-out")
     return content
 
 @handler.add(MessageEvent, message=TextMessage)
