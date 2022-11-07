@@ -60,9 +60,19 @@ def movie():
     return content
 
 def mango():
-    gg = 1
-    return gg
-setInterval(mango, 100)
+    target_url = 'https://movies.yahoo.com.tw/movie_intheaters.html'
+    rs = requests.session()
+    res = rs.get(target_url, verify=False)
+    res.encoding = 'utf-8'
+    soup = BeautifulSoup(res.text, 'html.parser')   
+    content = ""
+    for index, data in enumerate(soup.find("div",class_="out-of-stock txt-sold-out")):
+        if index == 1:
+            return content       
+        title = data.text
+        content += '{}\n'.format(title).lstrip()
+    return content
+
 
 
 @handler.add(MessageEvent, message=TextMessage)
